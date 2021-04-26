@@ -167,4 +167,12 @@ $(function() {
 		$('.footer__info, .footer__cross, .footer__contacts').attr('data-wow-offset', '40')
 	}
 
+
+
+	// Ввод телефона
+
+	$('#phone').on('input', function() {
+		$(this).val($(this).val().replace(/[A-Za-zA-Яа-я-Ёе]/, ''))
+	}) 
+
 })

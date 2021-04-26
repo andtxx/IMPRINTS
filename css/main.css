@@ -416,10 +416,12 @@ body {
 .popup fieldset {
   position: relative;
   margin: 10px 0 10px 0;
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 .popup fieldset .select__btn {
+  display: block;
   position: relative;
   border: 1px solid #000;
   width: 200px;
@@ -478,9 +480,10 @@ body {
   display: none;
 }
 .popup textarea {
+  display: block;
   text-align: center;
   border: 1px solid #262626;
-  margin: 10px 0 10px 0;
+  margin: 20px auto 10px;
   resize: vertical;
 }
 .popup .submit {
