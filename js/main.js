@@ -4,15 +4,8 @@ $(function() {
 
 	// Прогресс скролла
 
-	let windowHeight = $(window).height()
-
-	let docHeight = $(document).height()
-
-	let currentScroll = $(document).scrollTop()
-
 	$(window).scroll(function() {
-		currentScroll = $('html').scrollTop()
-		let progress = (currentScroll / (docHeight - windowHeight)) * 100
+		let progress = ($(document).scrollTop() / ($(document).height() - $(window).height())) * 100
 		$('.progress').css('width', progress + '%')
 	})
 
@@ -83,8 +76,6 @@ $(function() {
 
 	// Калькулятор
 
-	// Выбор стиля
-
 	$('.chooseStyle').click(function () {
 		$('.chooseStyle__styles').toggleClass('chooseStyle__styles__show')
 	})
@@ -110,7 +101,14 @@ $(function() {
 		$('.chooseStyle span:nth-child(4)').css('opacity', '1')
 	})
 
-	// Расчёт
+	$('.calculator__imput input').on('input', function() {
+		let val = $(this).val()
+		$(this).val(val.replace(/[^\d]/g, ''))
+		val = $(this).val()
+		if(val.length > 2) {
+			$(this).val(val.substring(0,2))
+		}
+	})
 
 	$('.calculate').click(function(){
 		let style = $('input[name="styles"]:checked').val()
@@ -150,7 +148,7 @@ $(function() {
 	)
 	wow.init()
 	
-	if (windowHeight < 500) {
+	if ($(window).height() < 500) {
 		$('.wow').attr('data-wow-offset', '50')
 	}
 
@@ -172,7 +170,7 @@ $(function() {
 	// Ввод телефона
 
 	$('#phone').on('input', function() {
-		$(this).val($(this).val().replace(/[A-Za-zA-Яа-я-Ёе]/, ''))
+		$(this).val($(this).val().replace(/[^+\d]/g, ''))
 	}) 
 
 })
